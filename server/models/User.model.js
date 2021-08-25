@@ -7,6 +7,11 @@ const UserSchema = mongoose.Schema({
         required: [true, 'A UserName is required'],
         minLength: [4, " A UserName must be at least 4 characters long "]
     },
+    Design: {
+        type: mongoose.Schema.Types.ObjectId,
+            ref: "Design",
+
+    },
     Password: {
         type: String,
         required: [true, 'A Password is required'],

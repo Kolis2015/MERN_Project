@@ -1,49 +1,52 @@
 const mongoose = require('mongoose');
 
 const DesignSchema = mongoose.Schema({
-    Category:{
+    category:{
         type: String,
         required: [true, 'A Category is required'],
         enum: ["Shoes", "Tshirt", "Shirts", "Pants", "Dress"]
     },
-    Gender:{
+    gender:{
         type: String,
         required: [true, 'A Gender is required'],
         enum: ["Female", "Male", "Unisex"]
     },
-    Season:{
+    season:{
         type: String,
-        //required: [true, 'A Season is required'],
-        emu:["Winter", "Spring", "Summer", "Fall"]
+        required: [true, 'A Season is required'],
+        emum:["Winter", "Spring", "Summer", "Fall"]
     },
-    DressCode:{
+    dressCode:{
         type: String,
-        //required: [true, 'A DressCode is required'],
-        emu:["Formal", "Casual", "Athletic", "Occasional", "Other"]
+        required: [true, 'A DressCode is required'],
+        emum:["Formal", "Casual", "Athletic", "Occasional", "Other"]
     },
-    Name:{
+    designerName:{
         type: String,
         required:[true, 'A Name is required'],
         minLength:[4, 'A Name must be at least 4 characters long']
     },
-    Description:{
+    description:{
         type: String,
         required: [true, 'A Description is required'],
         minLength:[10, 'A Description must be at least 10 characters long']
     },
-    DesignfileUploadID:{
+    designFileUploadID:{
         type: String,
         required: [true,'A Designfile is required'],
     },
-    DesignImageUploadID:{
+    designImageUploadID:{
         type: String,
         required: [true,'A DesignImage is required'],
     },
-    DesignThumbnailUploadID:{
+    designThumbnailUploadID:{
         type: String,
         required: [true,'A DesignThumbnail is required'],
     },
-    
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }
 
 
 
