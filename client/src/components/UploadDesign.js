@@ -6,7 +6,7 @@ const UploadDesign = () => {
     const [toggleState, setToggleState] = useState(1);
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
-    const [season, setSeason] = useState("")
+    const [dress, setdress] = useState("")
     const [dressCode, setDressCode] = useState("")
     const [designerName, setDesignerName] = useState("")
     const [description, setDescription] = useState("")
@@ -24,20 +24,35 @@ const UploadDesign = () => {
 
     const designHandler = (e) => {
         e.preventDefault()
+
         const newDesign = {
             category,
             gender,
-            season,
+            dress,
             dressCode,
             designerName,
             description,
-            designFile,
-            designImage,
-            designThumbnail
+            // designFile,
+            // designImage,
+            // designThumbnail
         }
-        axios.post("http://localhost:8000/api/Design/", newDesign,
+        
+        const formData = new FormData();
+        formData.append('designFile', designFile)
+        formData.append('designImage', designImage)
+        formData.append('designThumbnail', designThumbnail)
+        formData.append('designData', new Blob([JSON.stringify(newDesign)], {
+            type: "application/json"
+        }));
+
+
+    
+        axios.post("http://localhost:8000/api/Design/", formData,
         {
             withCredentials: true,
+            headers: {
+                'Content-Type':'multipart/form-data'
+            }
         })
             .then((res) => {
             console.log("files sucessfully uploaded")
@@ -97,27 +112,27 @@ const UploadDesign = () => {
                     </div>
                     <div className="radioDiv ">
                         <label className = "designerLabel">Season Specific Design</label>
-                        <input type="radio" name="season" value="Winter" onChange={(e) => setSeason(e.target.value)} />
+                        <input type="radio" name="season" value="Winter" onChange={(e) => setdress(e.target.value)} />
                         <label  >Winter</label>
-                        <input type="radio" name="season" value="Spring" onChange={(e) => setSeason(e.target.value)} />
+                        <input type="radio" name="season" value="Spring" onChange={(e) => setdress(e.target.value)} />
                         <label >Spring</label>
-                        <input  type="radio"  name="season" value="Summer" onChange = {(e) => setSeason(e.target.value)}/>
+                        <input  type="radio"  name="season" value="Summer" onChange = {(e) => setdress(e.target.value)}/>
                         <label >Summer</label>
-                        <input type="radio"  name="season" value="Fall" onChange = {(e) => setSeason(e.target.value)}/>
+                        <input type="radio"  name="season" value="Fall" onChange = {(e) => setdress(e.target.value)}/>
                         <label >Fall</label>
                         
                     </div>
                     <div className="radioDiv">
                         <label className = "designerLabel" >Dress Code</label>
-                        <input type="radio" name="season" value="Formal" onChange={(e) => setDressCode(e.target.value)} />
+                        <input type="radio" name="dress" value="Formal" onChange={(e) => setDressCode(e.target.value)} />
                         <label >Foraml</label>
-                        <input type="radio" name="season" value="Casual" onChange={(e) => setDressCode(e.target.value)} />
+                        <input type="radio" name="dress" value="Casual" onChange={(e) => setDressCode(e.target.value)} />
                         <label  >Casual</label>
-                        <input type="radio"  name="season" value="Athletic" onChange = {(e) => setDressCode(e.target.value)}/>
+                        <input type="radio"  name="dress" value="Athletic" onChange = {(e) => setDressCode(e.target.value)}/>
                         <label  >Athletic</label>
-                        <input type="radio"  name="season" value="Occasional" onChange = {(e) => setDressCode(e.target.value)}/>
+                        <input type="radio"  name="dress" value="Occasional" onChange = {(e) => setDressCode(e.target.value)}/>
                         <label  >Occasional</label>
-                        <input type="radio"  name="season" value="Other" onChange = {(e) => setDressCode(e.target.value)}/>
+                        <input type="radio"  name="dress" value="Other" onChange = {(e) => setDressCode(e.target.value)}/>
                         <label  >Other</label>
                         
                         
