@@ -83,40 +83,31 @@ module.exports.create = (req, res) => {
         }
         //designImage.move
         //if there is an error return status 500
-        // console.log(newDesign
-        //else we cans ay designThumbnail.move
-        //if there is an error return status 500
-        //else design.create and add to mongoDB
-        res.json({ status: "It's all good !" })
+        designImage.mv("./public/" + designImageName, function
+            (err) {
+            if (err) {
+                console.log(err)
+                return res.status(500).send({ msg: "Error occured" });
+            }
+            //else we cans ay designThumbnail.move
+            //if there is an error return status 500
+            designThumbnail.mv("./public/" + designThumbnailName, function
+                (err) {
+                if (err) {
+                    console.log(err)
+                    return res.status(500).send({ msg: "Error occured" });
+                }
+                
+                
+                // console.log(newDesign
+                
+                //else design.create and add to mongoDB
+                res.json({ status: "It's all good !" })
+            })
+        })
     });
-    designImage.mv("./public/" + designImageName, function
-    (err) {
-    if (err) {
-        console.log(err)
-        return res.status(500).send({ msg: "Error occured" });
-    }
-    //designImage.move
-    //if there is an error return status 500
-    // console.log(newDesign
-    //else we cans ay designThumbnail.move
-    //if there is an error return status 500
-    //else design.create and add to mongoDB
-    res.json({ status: "It's all good !" })
-    });
-    designThumbnail.mv("./public/" + designThumbnailName, function
-    (err) {
-    if (err) {
-        console.log(err)
-        return res.status(500).send({ msg: "Error occured" });
-    }
-    //designImage.move
-    //if there is an error return status 500
-    // console.log(newDesign
-    //else we cans ay designThumbnail.move
-    //if there is an error return status 500
-    //else design.create and add to mongoDB
-    res.json({ status: "It's all good !" })
-});
+
+};
     // validateDesign(req.body);
     // Pet.create(req.body)
     //     .then((newDesign) => {
@@ -130,7 +121,6 @@ module.exports.create = (req, res) => {
     //         res.status(400).json(err);
 
     //     })
-};
 
 module.exports.getOne = (req, res) => {
     console.log('inside getOne');
