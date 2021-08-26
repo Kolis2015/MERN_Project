@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { navigate} from '@reach/router'
+import Header from "./HeaderSimple";
+import Register from "./Register";
 
 const Login = () => {
 
@@ -10,6 +12,7 @@ const [errorMessage, setErrorMessage] = useState("");
     
 const login = event => {
     event.preventDefault();
+
     axios.post("http://localhost:8000/api/User/login", { 
         UserName: UserName, 
         Password: Password,
@@ -21,10 +24,10 @@ const login = event => {
         withCredentials: true
         })
         .then((res) => {
-        console.log(res.cookie);
-        console.log(res);
-        console.log(res.data, 'is res data!');
-        navigate("/loggedin")
+            console.log(res.cookie);
+            console.log(res);
+            console.log(res.data, 'is res data!');
+            navigate("/loggedin")
         })
         .catch(err => {
             console.log(err.response);
@@ -35,37 +38,35 @@ const login = event => {
 
 
     return (
-        <>
-        {
-            <img className="siteLogo" src="" alt="site logo"/>  
-            }
-            <form onSubmit={login}>
-                <p>If you already have an account, please login.</p>
-                <p className="error-text">{errorMessage ? errorMessage : ""}</p>
-                <div>
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        name="UserName"
-                        value={UserName}
-                        onChange={(e) => setUserName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input 
-                        type="password"
-                        name="Password"
-                        value={Password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-            
-                <button type="submit">Sign In</button>
-        
-        </form>
-        </>
-    )
+		<div className="wrapper">
+			<Header />
+			<div className="component-container">
+                {/* login */}
+                <h4>If you already have an account, please login.</h4>
+                <form className="frm-upload" onSubmit={login}>
+                    <div className="info-bundle"> 
+                        <label className="info-bundle-label">Username</label>
+                        <input className="info-bundle-textbox" type="text" name="UserName" value={UserName} onChange={(e) => setUserName(e.target.value)}/>
+                        <span className="error-text">{errorMessage ? errorMessage : ""}</span>
+                    </div>
+                    <div className="info-bundle"> 
+                        <label className="info-bundle-label">Password</label>
+                        <input className="info-bundle-textbox" type="password" name="Password" value={Password} onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
+                    <div className="hold-button-at-right">
+                        {/* Meltem, change this to link.  Can a link trigger submit???  Try and learn monkkey!!!
+                        Also it should not move around drastically when there is an error message shown.  This is bothersome.  
+                        Must be fixed before go-live date!!!*/}
+                        <button className="btn-login-register" type="submit">Login</button>
+                    </div>
+                </form>
+			</div> {/* end of component container */}
+            <div className="component-container">
+                {/* register */}
+                <Register />
+            </div>
+		</div>
+	)
 }
 
 export default Login

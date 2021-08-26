@@ -9,17 +9,17 @@ const [errs, setErrs] = useState({});
 const [ user, setUser ] = useState({
     UserName: "", 
     Password: "", 
-    })
+})
 
-    const handleChange = (e) => {
+const handleChange = (e) => {
     setUser({
         UserName: user.UserName,
         Password: user.Password,
         [e.target.name]: e.target.value,
     })
-    }
+}
 
-    const register = e => {
+const register = e => {
     e.preventDefault();
 
     axios.post("http://localhost:8000/api/User", 
@@ -30,71 +30,55 @@ const [ user, setUser ] = useState({
         .then(res => {
         console.log(res.data);
 
-
         setUser({
             UserName: "",
             Password: "", 
         })
 
-        setConfirmReg("Thank you for Registering, you can now log in!");
+        setConfirmReg("Thank you for registering, you may now log in!");
             setErrs({});  // remember to reset errors state if it was successful
             navigate('/loggedin')
         })
         .catch((err) => {
-        console.log(err.response.data);
-        setErrs(err.response.data.errors);
+            console.log(err.response.data);
+            setErrs(err.response.data.errors);
         });
     };
 
-
     return (
-        <>
-            <form onSubmit={register}>
-            {
-            confirmReg ? 
-                <h4>{confirmReg}</h4>
-                : null
-            }
-                <p>If you do not have an account please create one.</p>
-                <p>Job Function</p>
-                <input type="radio" name="designStyle" value="designer"/>
-                <label for="html">Designer</label>
-                <input type="radio" name="designStyle" disabled value="purchaser"/>
-                <label for="html">Purchaser</label>
-                <div>
-                {
-						errs.UserName ? 
-							<p>{errs.UserName.message}</p>
-							: null
-					}
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        name="UserName"
-                        value={user.UserName}
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-                <div>
-                {
-						errs.Password ? 
-							<p>{errs.Password.message}</p>
-							: null
-					}
-                    <label>Password</label>
-                    <input 
-                        type="Password"
-                        name="Password"
-                        value={user.Password}
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-            
-                <button type="submit">Register</button>
-        
-        </form>
-        </>
+        <div className="wrapper">
+            <div className="component-container-second-component">
+                {/* register */}
+                <h4>If you do not have an account please create one and join us.</h4>
+                <form className="frm-upload" onSubmit={register}>
+                    {confirmReg ? 
+                        <h4>{confirmReg}</h4>
+                        : null
+                    }
+                    <div className="info-bundle"> 
+                        <label className="info-bundle-label">Jub Function</label>
+                        <input type="radio" name="designStyle" value="designer"/>
+                        <label for="html">Designer</label>
+                        <input type="radio" name="designStyle" disabled value="purchaser"/>
+                        <label for="html">Purchaser</label>
+                    </div>
+                    <div className="info-bundle"> 
+                        <label className="info-bundle-label">Username</label>
+                        <input className="info-bundle-textbox" type="text" name="UserName" value={user.UserName} onChange={(e) => handleChange(e)}/>
+                        <span className="error-text">{errs.UserName ? errs.UserName.message : null}</span>
+                    </div>
+                    <div className="info-bundle"> 
+                        <label className="info-bundle-label">Password</label>
+                        <input className="info-bundle-textbox" type="Password" name="Password" value={user.Password} onChange={(e) => handleChange(e)}/>
+                        <span className="error-text">{errs.Password ? errs.Password.message : null}</span>
+                    </div>
+                    <div className="hold-button-at-right">
+                        <button className="btn-login-register" type="submit">Register</button>
+                    </div>                    
+                </form>
+            </div>
+        </div>
     )
 }
 
-export default Register
+export default Register;

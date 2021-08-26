@@ -16,7 +16,7 @@ const Header = (props) => {
             </span>
             <span className="header-right"> 
                 <Link className="link" to={"/logreg"}>login</Link>  
-                <span className="seperator">|</span> 
+                <span className="seperator">||</span> 
                     <Link className="link" to={"/logreg"}>register</Link>
                 </span>
             </div>

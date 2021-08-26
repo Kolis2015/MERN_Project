@@ -50,7 +50,17 @@
 .component-container {
   width: 70%;
   text-align: left;
-  background-color: #f1faee;  
+  background-color: #f1faee;   
+  margin: 10px 5px 10px 322px;
+  padding: 5px 5px 5px 0px; 
+  display: inline-block;
+}
+
+.component-container-second-component {
+  width: 70%;
+  text-align: left;
+  margin-left: 0px;
+  background-color: #f1faee;
   margin: 10px 5px 10px 322px;
   padding: 5px 5px 5px 0px; 
   display: inline-block;
@@ -102,6 +112,24 @@ h4 {
   display: inline-block;
 }
 
+.btn-upload-design {
+  border: none;
+  background-color: #e63946;
+  color: #f1faee;
+  font-size: 17px;
+  font-weight: 400; 
+  padding: 5px;
+}
+
+.btn-login-register {
+  border: none;
+  background-color: #457b9d;
+  color: #f1faee;
+  font-size: 17px;
+  font-weight: 400; 
+  padding: 5px;
+}
+
 .holder {
   display: flex;
   justify-content: space-between;
@@ -118,6 +146,13 @@ h4 {
 .hold-at-right {
   display: inline-block;
   vertical-align: top;
+}
+
+.hold-button-at-right {
+  width: 70%;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 
@@ -158,7 +193,7 @@ h4 {
 
 .error-text {
   color: #e63946;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
   margin-left: 5px;
   display: inline ;
@@ -235,16 +270,6 @@ button {
   display: none;
 }
 
-/* .content h2 {
-  padding: 0px 0 5px 0px;
-}
-.content hr {
-  width: 100px;
-  height: 5px;
-  background: #e63946;
-  margin-bottom: 5px;
-} */
-
 .content p {
   width: 100%;
   height: 100%;
@@ -252,4 +277,59 @@ button {
 
 .active-content {
   display: block;
+}
+
+.info-bundle {
+  height: 30px;
+  font-weight: 400;
+  color: #1d3557;
+  background-color: #f1faee;
+  display: block;
+  align-items: left;
+  margin: 5px 5px 10px 5px;
+}
+
+.info-bundle-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d3557;
+  margin-right: 10px;
+}
+
+.info-bundle-label-light {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1d3557;
+  margin-right: 10px;
+}
+
+.info-bundle-textbox {
+  width: 200px;
+  font-size: 18px;
+  color: #1d3557;
+  border-width: 1px;
+  border-color: #1d3557;
+}
+
+.info-bundle-textarea {
+  width: 600px;
+  height: 50px;
+  font-size: 18px;
+  color: #1d3557;
+  border-width: 1px;
+  border-color: #1d3557;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.info-bundle-dropdownbox {
+  font-size: 18px;
+  border-width: 1px;
+  border-color: #1d3557;
+}
+
+.frm-upload {
+  background-color: #f1faee;
+  margin: 10px 0px 0px 0px;
+  display: inline-block;
 }

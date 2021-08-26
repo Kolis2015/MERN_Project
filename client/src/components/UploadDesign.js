@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const UploadDesign = () => {
 
-    const [toggleState, setToggleState] = useState(1);
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
     const [dress, setdress] = useState("")
@@ -14,13 +13,7 @@ const UploadDesign = () => {
     const [designImage, setDesignImage] = useState()
     const [designThumbnail, setDesignThubmnail] = useState()
 
-    const toggleTab = (index) => {
-    setToggleState(index);
-    };
-
-    const categoriesArray = ["Shoes", "Tshirt", "Shirts", "Pants", "Dress"]
-
-    
+    const categoriesArray = ["Shoes", "T-shirt", "Shirts", "Pants", "Dress"]
 
     const designHandler = (e) => {
         e.preventDefault()
@@ -32,9 +25,6 @@ const UploadDesign = () => {
             dressCode,
             designerName,
             description,
-            // designFile,
-            // designImage,
-            // designThumbnail
         }
         
         const formData = new FormData();
@@ -44,8 +34,6 @@ const UploadDesign = () => {
         formData.append('designData', new Blob([JSON.stringify(newDesign)], {
             type: "application/json"
         }));
-
-
     
         axios.post("http://localhost:8000/api/Design/", formData,
         {
@@ -64,135 +52,77 @@ const UploadDesign = () => {
     }
 
     return (
-    <div className="tabscontainer">
-    <div className="bloc-tabs">
-        <button
-        className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-        onClick={() => toggleTab(1)}
-        >
-        Upload Design
-        </button>
-        <button
-        className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-        onClick={() => toggleTab(2)}
-        >
-        Manage Design
-        </button>
-        <button
-        className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-        onClick={() => toggleTab(3)}
-        >
-        Find New Gig
-        </button>
-    </div>
-
-    <div className="content-tabs">
-        <div
-        className={toggleState === 1 ? "content  active-content" : "content"}
-                >
-                <form onSubmit = {(e)=>{designHandler(e)}}>
-                <label>Category</label>
-                    <select className="category"  value={category} onChange={(e) => setCategory(e.target.value)} >
-                        <option  value=""></option>
+        <form className="frm-upload" onSubmit = {(e)=>{designHandler(e)}}>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Category</label>
+                <select className="info-bundle-dropdownbox"  value={category} onChange={(e) => setCategory(e.target.value)} >
+                    <option  value=""></option>
                         {
-                                categoriesArray.map((type, index) =>
+                            categoriesArray.map((type, index) =>
                                 (<option key={index} value={type}>{type}</option>)
                             )
                         }
-                    </select>
-                    <div className="radioDiv ">
-                        <label className = "designerLabel" >Gender Specific Design</label>
-                        <input type="radio" name="gender" value="Female" onChange={(e) => setGender(e.target.value)} />
-                        <label  >Female</label>
-                        <input type="radio" name="gender" value="Male" onChange={(e) => setGender(e.target.value)} />
-                        <label >Male</label>
-                        <input type="radio"  name="gender" value="Unisex" onChange = {(e) => setGender(e.target.value)}/>
-                        <label  >Unisex</label>
-                        
-                    </div>
-                    <div className="radioDiv ">
-                        <label className = "designerLabel">Season Specific Design</label>
-                        <input type="radio" name="season" value="Winter" onChange={(e) => setdress(e.target.value)} />
-                        <label  >Winter</label>
-                        <input type="radio" name="season" value="Spring" onChange={(e) => setdress(e.target.value)} />
-                        <label >Spring</label>
-                        <input  type="radio"  name="season" value="Summer" onChange = {(e) => setdress(e.target.value)}/>
-                        <label >Summer</label>
-                        <input type="radio"  name="season" value="Fall" onChange = {(e) => setdress(e.target.value)}/>
-                        <label >Fall</label>
-                        
-                    </div>
-                    <div className="radioDiv">
-                        <label className = "designerLabel" >Dress Code</label>
-                        <input type="radio" name="dress" value="Formal" onChange={(e) => setDressCode(e.target.value)} />
-                        <label >Foraml</label>
-                        <input type="radio" name="dress" value="Casual" onChange={(e) => setDressCode(e.target.value)} />
-                        <label  >Casual</label>
-                        <input type="radio"  name="dress" value="Athletic" onChange = {(e) => setDressCode(e.target.value)}/>
-                        <label  >Athletic</label>
-                        <input type="radio"  name="dress" value="Occasional" onChange = {(e) => setDressCode(e.target.value)}/>
-                        <label  >Occasional</label>
-                        <input type="radio"  name="dress" value="Other" onChange = {(e) => setDressCode(e.target.value)}/>
-                        <label  >Other</label>
-                        
-                        
-                    </div>
-                    <div className = "designerDiv ">
-                        <label className = "designerLabel">Designer Name</label>
-                        <input type="text" value={designerName} onChange ={(e) => setDesignerName(e.target.value)} />
-                    </div>
-                    <div className="designerDescription">
-                        <label className = "designerLabel labelHeight" >Description</label>
-                        <textarea value={description} placeholder="500 Characters max"rows="3" cols="60" onChange ={(e) => setDescription(e.target.value)} />
-                    </div>
-                    <div className="fileContainer">
-                        <label className="fileLabel" >Upload Design file</label>
-                        <input type="file" onChange = {(e) => setDesignFile(e.target.files[0])} />
-                        <button className="designerSelected">Select</button>
-                    </div>
-                    <div className="fileContainer">
-                        <label className = "fileLabel">Upload Design Image</label>
-                        <input type="file" onChange = {(e) => setDesignImage(e.target.files[0])} />
-                        <button className="designerSelected">Select</button>
-                    </div>
-                    <div className="fileContainer">
-                        <label className = "fileLabel">Upload Design Thumbnail</label>
-                        <input type="file" onChange = {(e) => setDesignThubmnail(e.target.files[0])} />
-                        <button className="designerSelected">Select</button>
-                    </div>
-                    <button type="submit" className ="uploadDesign" >Upload Design</button>
-                </form>
-                
-        </div>
-
-        <div
-        className={toggleState === 2 ? "content  active-content" : "content"}
-        >
-        <h2>Content 2</h2>
-        
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            voluptatum qui adipisci.
-        </p>
-        </div>
-
-        <div
-        className={toggleState === 3 ? "content  active-content" : "content"}
-        >
-        <h2>Content 3</h2>
-        
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-            nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-            Accusamus in quia odit aspernatur provident et ad vel distinctio
-            recusandae totam quidem repudiandae omnis veritatis nostrum
-            laboriosam architecto optio rem, dignissimos voluptatum beatae
-            aperiam voluptatem atque. Beatae rerum dolores sunt.
-        </p>
-        </div>
-    </div>
-    </div>
+                </select>
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Gender Specific Design</label>
+                <input type="radio" name="gender" value="Female" onChange={(e) => setGender(e.target.value)}/>
+                <label className="info-bundle-label-light">Female</label>
+                <input type="radio" name="gender" value="Male" onChange={(e) => setGender(e.target.value)}/>
+                <label className="info-bundle-label-light">Male</label>
+                <input type="radio"  name="gender" value="Unisex" onChange = {(e) => setGender(e.target.value)}/>
+                <label className="info-bundle-label-light">Unisex</label>
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Season Specific Design</label>
+                <input type="radio" name="season" value="Winter" onChange={(e) => setdress(e.target.value)}/>
+                <label className="info-bundle-label-light">Winter</label>
+                <input type="radio" name="season" value="Spring" onChange={(e) => setdress(e.target.value)}/>
+                <label className="info-bundle-label-light">Spring</label>
+                <input type="radio"  name="season" value="Summer" onChange = {(e) => setdress(e.target.value)}/>
+                <label className="info-bundle-label-light">Summer</label>
+                <input type="radio"  name="season" value="Fall" onChange = {(e) => setdress(e.target.value)}/>
+                <label className="info-bundle-label-light">Fall</label>
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Dress Code</label>
+                <input type="radio" name="dress" value="Formal" onChange={(e) => setDressCode(e.target.value)} />
+                <label className="info-bundle-label-light">Formal</label>
+                <input type="radio" name="dress" value="Casual" onChange={(e) => setDressCode(e.target.value)} />
+                <label className="info-bundle-label-light">Casual</label>
+                <input type="radio"  name="dress" value="Athletic" onChange = {(e) => setDressCode(e.target.value)}/>
+                <label className="info-bundle-label-light">Athletic</label>
+                <input type="radio"  name="dress" value="Occasional" onChange = {(e) => setDressCode(e.target.value)}/>
+                <label className="info-bundle-label-light">Occasional</label>
+                <input type="radio"  name="dress" value="Other" onChange = {(e) => setDressCode(e.target.value)}/>
+                <label className="info-bundle-label-light">Other</label>
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Designer Name</label>
+                <input className="info-bundle-textbox" type="text" value={designerName} onChange ={(e) => setDesignerName(e.target.value)} />
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Description</label>
+                <textarea className="info-bundle-textarea" value={description} placeholder="500 Characters max" rows="3" cols="60" onChange ={(e) => setDescription(e.target.value)} />
+            </div>
+            <br />
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Upload Design file</label>
+                <input type="file" onChange = {(e) => setDesignFile(e.target.files[0])} />
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Upload Design Image</label>
+                <input type="file" onChange = {(e) => setDesignImage(e.target.files[0])} />
+            </div>
+            <div className="info-bundle"> 
+                <label className="info-bundle-label">Upload Design Thumbnail</label>
+                <input type="file" onChange = {(e) => setDesignThubmnail(e.target.files[0])} />
+            </div>
+            <div className="hold-button-at-right">
+                <button className="btn-upload-design" type="submit">Upload Design</button>
+            </div>
+        </form>
     )
 }
 
-export default UploadDesign
+export default UploadDesign;

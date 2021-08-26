@@ -5,7 +5,6 @@ import Header from "./Header2";
 import { LoremIpsum } from 'react-lorem-ipsum';
 
 const Home = (props) => {
-    
 
     return (
 		<div className="wrapper">

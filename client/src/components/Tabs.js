@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UploadDesign from "./UploadDesign";
 
 function Tabs() {
     const [toggleState, setToggleState] = useState(1);
@@ -18,7 +19,7 @@ function Tabs() {
             <div className="content-tabs">
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
                     <p>
-                        Upload Design - insert content here.
+                        <UploadDesign />
                     </p>
                 </div>
 
@@ -30,7 +31,7 @@ function Tabs() {
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
                     <p>
-                        Find New Gig - coming soon.
+                        <img src="../../comingSoon.png" alt="logo"/>
                     </p>
                 </div>
             </div>
