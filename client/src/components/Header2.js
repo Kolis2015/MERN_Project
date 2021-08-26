@@ -15,12 +15,13 @@ const Header = (props) => {
                 </ul>
             </span>
             <span className="header-right"> 
-                <Link className="link" to={"/user/login"}>login</Link>  
+                <Link className="link" to={"/logreg"}>login</Link>  
                 <span className="seperator">|</span> 
-                    <Link className="link" to={"/user/register"}>register</Link>
+                    <Link className="link" to={"/logreg"}>register</Link>
                 </span>
             </div>
     )
 }
 
 export default Header;
+

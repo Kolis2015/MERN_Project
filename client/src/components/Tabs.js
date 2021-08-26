@@ -30,7 +30,7 @@ function Tabs() {
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
                     <p>
-                        Find New Gig - insert content here.
+                        Find New Gig - coming soon.
                     </p>
                 </div>
             </div>
