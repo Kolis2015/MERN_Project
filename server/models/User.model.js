@@ -12,6 +12,10 @@ const UserSchema = mongoose.Schema({
             ref: "Design",
 
     },
+    UserDesigns: [{
+        type: mongoose.Schema.Types.ObjectId,
+			ref: "Design",
+    }],
     Password: {
         type: String,
         required: [true, 'A Password is required'],
@@ -30,6 +34,7 @@ UserSchema.pre("save", function (next) {
             next();
 
         })
-},{ timestamps: true });
+},
+    { timestamps: true });
 
 module.exports = mongoose.model("User", UserSchema);

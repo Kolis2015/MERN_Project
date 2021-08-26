@@ -45,7 +45,7 @@ module.exports.login = (req, res) => {
                                     secret),
                                 {
                                     httpOnly: false,
-                                    expires: new Date(Date.now() + 900000)
+                                    expires: new Date(Date.now() + 90000000)
                                 }
                             )
                                 .json({
@@ -94,3 +94,24 @@ module.exports.isLoggedIn = (req, res) => {
         res.json(false);
     }
 }
+
+
+module.exports.getdesigns = (req, res) => {
+    const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true });
+    const user_id = decodedJwt.payload.user_id;
+    User.findByIdAndUpdate(user_id, {
+        $pull: { UserDesigns: req.params.id },
+    },
+        {new:true, useFindAndModify:false}
+    )
+        .populate("UserDesigns", "-__v")
+        .then((updatedUser) => {
+            console.log(updatedUser)
+            res.json(updatedUser)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+}
+

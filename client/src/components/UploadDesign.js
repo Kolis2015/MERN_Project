@@ -5,7 +5,8 @@ const UploadDesign = () => {
 
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
-    const [dress, setdress] = useState("")
+    // const [dress, setdress] = useState("")
+    const[season,setSeason] = useState("")
     const [dressCode, setDressCode] = useState("")
     const [designerName, setDesignerName] = useState("")
     const [description, setDescription] = useState("")
@@ -21,7 +22,7 @@ const UploadDesign = () => {
         const newDesign = {
             category,
             gender,
-            dress,
+            season,
             dressCode,
             designerName,
             description,
@@ -75,13 +76,13 @@ const UploadDesign = () => {
             </div>
             <div className="info-bundle"> 
                 <label className="info-bundle-label">Season Specific Design</label>
-                <input type="radio" name="season" value="Winter" onChange={(e) => setdress(e.target.value)}/>
+                <input type="radio" name="season" value="Winter" onChange={(e) => setSeason(e.target.value)}/>
                 <label className="info-bundle-label-light">Winter</label>
-                <input type="radio" name="season" value="Spring" onChange={(e) => setdress(e.target.value)}/>
+                <input type="radio" name="season" value="Spring" onChange={(e) => setSeason(e.target.value)}/>
                 <label className="info-bundle-label-light">Spring</label>
-                <input type="radio"  name="season" value="Summer" onChange = {(e) => setdress(e.target.value)}/>
+                <input type="radio"  name="season" value="Summer" onChange = {(e) => setSeason(e.target.value)}/>
                 <label className="info-bundle-label-light">Summer</label>
-                <input type="radio"  name="season" value="Fall" onChange = {(e) => setdress(e.target.value)}/>
+                <input type="radio"  name="season" value="Fall" onChange = {(e) => setSeason(e.target.value)}/>
                 <label className="info-bundle-label-light">Fall</label>
             </div>
             <div className="info-bundle"> 

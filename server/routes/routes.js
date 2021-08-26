@@ -14,5 +14,6 @@ module.exports = (app) => {
     app.delete('/api/Design/:id', DesignController.delete);
     app.post('/api/Image', ImageController.create); 
     app.get('/api/Image/:id', ImageController.getOne);
+    app.get('/api/User/Designs',UserController.getdesigns)
 
 }

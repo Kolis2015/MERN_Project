@@ -1,4 +1,5 @@
 const Design = require('../models/Design.model');
+const jwt = require("jsonwebtoken");
 
 module.exports.getAll = (req, res) => {
     console.log("inside get all");
@@ -59,8 +60,12 @@ module.exports.create = (req, res) => {
     console.log(req.files.designImage.name)
     console.log(req.files.designThumbnail.name)
     console.log(JSON.parse(req.files.designData.data))
-
+    
     let newDesign = new Design(JSON.parse(req.files.designData.data))
+    //add the designers user id to the new design object
+    const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true });
+    const user_id = decodedJwt.payload.user_id;
+    newDesign.user_id = user_id;
 
     const designFile = req.files.designFile
     const designFileName = newDesign._id + "_" + designFile.name
@@ -102,7 +107,17 @@ module.exports.create = (req, res) => {
                 // console.log(newDesign
                 
                 //else design.create and add to mongoDB
-                res.json({ status: "It's all good !" })
+                newDesign.save()
+                    .then((savedDesign) => {
+                        console.log("saved Design Successful")
+                        console.log(savedDesign)
+                        res.json({ status: "It's all good !" })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                        res.status(500).json(err)
+                })
+                
             })
         })
     });
