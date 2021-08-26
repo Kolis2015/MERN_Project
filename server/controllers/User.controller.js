@@ -45,7 +45,7 @@ module.exports.login = (req, res) => {
                                     secret),
                                 {
                                     httpOnly: false,
-                                    expires: new Date(Date.now() + 900000)
+                                    expires: new Date(Date.now() + 90000000)
                                 }
                             )
                                 .json({

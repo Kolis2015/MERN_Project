@@ -6,7 +6,8 @@ const UploadDesign = () => {
     const [toggleState, setToggleState] = useState(1);
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
-    const [dress, setdress] = useState("")
+    // const [dress, setdress] = useState("")
+    const[season,setSeason] = useState("")
     const [dressCode, setDressCode] = useState("")
     const [designerName, setDesignerName] = useState("")
     const [description, setDescription] = useState("")
@@ -28,7 +29,7 @@ const UploadDesign = () => {
         const newDesign = {
             category,
             gender,
-            dress,
+            season,
             dressCode,
             designerName,
             description,
@@ -112,13 +113,13 @@ const UploadDesign = () => {
                     </div>
                     <div className="radioDiv ">
                         <label className = "designerLabel">Season Specific Design</label>
-                        <input type="radio" name="season" value="Winter" onChange={(e) => setdress(e.target.value)} />
+                        <input type="radio" name="season" value="Winter" onChange={(e) => setSeason(e.target.value)} />
                         <label  >Winter</label>
-                        <input type="radio" name="season" value="Spring" onChange={(e) => setdress(e.target.value)} />
+                        <input type="radio" name="season" value="Spring" onChange={(e) => setSeason(e.target.value)} />
                         <label >Spring</label>
-                        <input  type="radio"  name="season" value="Summer" onChange = {(e) => setdress(e.target.value)}/>
+                        <input  type="radio"  name="season" value="Summer" onChange = {(e) => setSeason(e.target.value)}/>
                         <label >Summer</label>
-                        <input type="radio"  name="season" value="Fall" onChange = {(e) => setdress(e.target.value)}/>
+                        <input type="radio"  name="season" value="Fall" onChange = {(e) => setSeason(e.target.value)}/>
                         <label >Fall</label>
                         
                     </div>
