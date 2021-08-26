@@ -6,16 +6,16 @@ import Register from "./Register";
 
 const Login = () => {
 
-const [UserName, setUserName] = useState("");
-const [Password, setPassword] = useState("");
-const [errorMessage, setErrorMessage] = useState("");
+    const [UserName, setUserName] = useState("");
+    const [Password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     
-const login = event => {
-    event.preventDefault();
+    const login = event => {
+        event.preventDefault();
 
-    axios.post("http://localhost:8000/api/User/login", { 
-        UserName: UserName, 
-        Password: Password,
+        axios.post("http://localhost:8000/api/User/login", { 
+            UserName: UserName, 
+            Password: Password,
         },
         {
         // this will force the sending of the credentials / cookies so they can be updated
@@ -27,6 +27,7 @@ const login = event => {
             console.log(res.cookie);
             console.log(res);
             console.log(res.data, 'is res data!');
+            localStorage.setItem("userLoggedIn", res.data.userLoggedIn);
             navigate("/loggedin")
         })
         .catch(err => {

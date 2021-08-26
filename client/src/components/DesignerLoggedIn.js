@@ -20,7 +20,8 @@ const DesignerLoggedIn = (props) => {
                     </span><br /><br /><br />
                     <div className="hold-button-at-right">
                             <h4>Ready, Set, Go!</h4>
-                            <button className="btn-upload-design" onClick={() => navigate('/uploaddesign')}>Upload a Design</button>
+                            <br />
+                            <button className="btn-upload-design" onClick={() => navigate("/Designer")}>Upload a Design</button>
                     </div>
                 </div> {/* end of component container */}
             </div>

@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const UploadDesign = () => {
-
+const UploadDesign = (props) => {
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
-    // const [dress, setdress] = useState("")
     const[season,setSeason] = useState("")
     const [dressCode, setDressCode] = useState("")
-    const [designerName, setDesignerName] = useState("")
+    const [designerName, setDesignerName] = useState(localStorage.getItem("userLoggedIn"));
     const [description, setDescription] = useState("")
     const [designFile, setDesignFile] = useState()
     const [designImage, setDesignImage] = useState()
@@ -100,7 +98,7 @@ const UploadDesign = () => {
             </div>
             <div className="info-bundle"> 
                 <label className="info-bundle-label">Designer Name</label>
-                <input className="info-bundle-textbox" type="text" value={designerName} onChange ={(e) => setDesignerName(e.target.value)} />
+                <input className="info-bundle-textbox" type="text" value={designerName} disabled />
             </div>
             <div className="info-bundle"> 
                 <label className="info-bundle-label">Description</label>

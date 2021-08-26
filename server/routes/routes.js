@@ -8,6 +8,7 @@ module.exports = (app) => {
     app.post('/api/User/logout', UserController.logout);
     app.post('/api/User/isLoggedIn', UserController.isLoggedIn);
     app.get('/api/Design', DesignController.getAll);
+    app.get('/api/Design/byUserId', DesignController.getByUserId);
     app.post('/api/Design', DesignController.create);
     app.get('/api/Design/:id', DesignController.getOne);
     app.put('/api/Design/:id', DesignController.update);

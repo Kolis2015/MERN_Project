@@ -4,7 +4,7 @@ const DesignSchema = mongoose.Schema({
     category:{
         type: String,
         required: [true, 'A Category is required'],
-        enum: ["Shoes", "Tshirt", "Shirts", "Pants", "Dress"]
+        enum: ["Shoes", "T-shirt", "Shirts", "Pants", "Dress"]
     },
     gender:{
         type: String,

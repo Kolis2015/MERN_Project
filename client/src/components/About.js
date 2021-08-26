@@ -21,7 +21,7 @@ const About = (props) => {
                         <span className="holder-at-right"><img src="../../team.jpg" alt="team"/></span>
                     </div>
                 </span>
-                <h3>How to participate:</h3>
+                <h3>How to participate?</h3>
                 <span className="component-message">
                     <LoremIpsum p={1} />
                 </span>

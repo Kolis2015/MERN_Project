@@ -15,42 +15,23 @@ module.exports.getAll = (req, res) => {
 
         })
 };
-// User.findByIdAndUpdate(req.params.id, {profilePicture: profilePicture.name}
-//     , {
-//         new: true,  // give me the new version...not the original
-//         runValidators: true, 
-//         useFindAndModify: false
-//         })
-//             .then((picUpdated) => {
-//                 console.log(picUpdated);
-//                 console.log("45 my file", myFile);
-//                 console.log(`${__dirname}`);
-//                 profilePicture.mv("./public/" + profilePicture.name, function
-//                 (err) {
-//                     if (err) {
-//                         console.log(err)
-//                         return res.status(500).send({ msg: "Error occured" });
-//                     }
-//                     // returing the response with file path and name
-//                     // res.send({name: myFile.name, path: `/${myFile.name}`});
-//                     Design.findByIdAndUpdate(req.params.id, {DesignImageUploadId: profilePicture.name}
-//                         , {
-//                             new: true,  // give me the new version...not the original
-//                             runValidators: true, 
-//                             useFindAndModify: false
-//                             })
-//                                 .then((picUpdated) => {
-//                                     console.log(picUpdated);
-//                                     console.log("45 my file", myFile);
-//                                     console.log(`${__dirname}`);
-//                                     profilePicture.mv("./public/" + profilePicture.name, function
-//                                     (err) {
-//                                         if (err) {
-//                                             console.log(err)
-//                                             return res.status(500).send({ msg: "Error occured" });
-//                                         }
-                                        // returing the response with file path and name
-                                        // res.send({name: myFile.name, path: `/${myFile.name}`});
+
+module.exports.getByUserId = (req, res) => {
+    console.log("inside get by user ID");
+    const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true });
+    const loggedInUser_id = decodedJwt.payload.user_id;
+
+    Design.find({user_id: loggedInUser_id})
+        .then((alldesign) => {
+            console.log(alldesign);
+            res.json(alldesign);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+
+        })
+};
                 
 
 module.exports.create = (req, res) => {
