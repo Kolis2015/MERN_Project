@@ -15,7 +15,7 @@ function App() {
         <About path = "/About" />
         <Designer path="/Designer" />
         <LogReg path="/logreg" />
-        <DesignerLoggedIn path="/loggedin" />
+        <DesignerLoggedIn path="/loggedin/ByUserID" />
         <UploadDesign path="/uploaddesign"/>
       </Router>
     </div>

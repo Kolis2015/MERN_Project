@@ -19,6 +19,9 @@ module.exports.getAll = (req, res) => {
 module.exports.getByUserId = (req, res) => {
     console.log("inside get by user ID");
     const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true });
+
+    console.log("decodedJwt = " + decodedJwt);
+
     const loggedInUser_id = decodedJwt.payload.user_id;
 
     Design.find({user_id: loggedInUser_id})
@@ -32,7 +35,7 @@ module.exports.getByUserId = (req, res) => {
 
         })
 };
-                
+
 
 module.exports.create = (req, res) => {
     console.log('inside create');

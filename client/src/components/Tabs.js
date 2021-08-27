@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UploadDesign from "./UploadDesign";
+// import ManageDesign from "./ManageDesign";
 
 function Tabs() {
     const [toggleState, setToggleState] = useState(1);
@@ -18,21 +19,15 @@ function Tabs() {
 
             <div className="content-tabs">
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                    <p>
-                        <UploadDesign />
-                    </p>
+                    <UploadDesign />
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    <p>
-                        Manage Design - insert content here.
-                    </p>
+                    <img src="../../comingSoon.png" alt="logo"/>
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    <p>
-                        <img src="../../comingSoon.png" alt="logo"/>
-                    </p>
+                    <img src="../../comingSoon.png" alt="logo"/>
                 </div>
             </div>
         </div>

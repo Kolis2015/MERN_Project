@@ -58,9 +58,9 @@ const register = e => {
                     <div className="info-bundle"> 
                         <label className="info-bundle-label">Jub Function</label>
                         <input type="radio" name="designStyle" value="designer"/>
-                        <label for="html">Designer</label>
+                        <label className="info-bundle-label">Designer</label>
                         <input type="radio" name="designStyle" disabled value="purchaser"/>
-                        <label for="html">Purchaser</label>
+                        <label className="info-bundle-label">Purchaser</label>
                     </div>
                     <div className="info-bundle"> 
                         <label className="info-bundle-label">Username</label>

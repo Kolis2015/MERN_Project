@@ -10,10 +10,6 @@ module.exports.create = (req, res) => {
         .then((newUser) => {
             console.log(newUser);
             res.json(newUser);
-
-
-
-
         })
         .catch((err) => {
             console.log(err);
@@ -37,6 +33,7 @@ module.exports.login = (req, res) => {
                             console.log("password is valid");
                             console.log(userRecord);
                             console.log(secret);
+                            console.log("userRecord._id = " + userRecord._id);
                             res.cookie("usertoken",
                                 jwt.sign({
                                     user_id: userRecord._id,
@@ -54,8 +51,6 @@ module.exports.login = (req, res) => {
                                 })
                         } else {
                             res.status(400).json({ message: "Incorrect password" });
-
-
                         }
 
                     }
@@ -63,8 +58,6 @@ module.exports.login = (req, res) => {
                     .catch((err) => {
                         console.log("error with compare pws:" + err)
                         res.status(400).json({ message: "Invalid Login Attempt" });
-
-
                     })
             }
         })
@@ -99,6 +92,7 @@ module.exports.isLoggedIn = (req, res) => {
 module.exports.getdesigns = (req, res) => {
     const decodedJwt = jwt.decode(req.cookies.usertoken, {complete: true });
     const user_id = decodedJwt.payload.user_id;
+    
     User.findByIdAndUpdate(user_id, {
         $pull: { UserDesigns: req.params.id },
     },

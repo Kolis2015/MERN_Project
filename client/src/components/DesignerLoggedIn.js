@@ -21,7 +21,7 @@ const DesignerLoggedIn = (props) => {
                     <div className="hold-button-at-right">
                             <h4>Ready, Set, Go!</h4>
                             <br />
-                            <button className="btn-upload-design" onClick={() => navigate("/Designer")}>Upload a Design</button>
+                            <button className="btn-upload-design" onClick={() => navigate(`/Designer`)}>Upload a Design</button>
                     </div>
                 </div> {/* end of component container */}
             </div>

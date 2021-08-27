@@ -24,11 +24,14 @@ const Login = () => {
         withCredentials: true
         })
         .then((res) => {
-            console.log(res.cookie);
+            console.log("____________________" + res.data.cookie);
             console.log(res);
             console.log(res.data, 'is res data!');
             localStorage.setItem("userLoggedIn", res.data.userLoggedIn);
-            navigate("/loggedin")
+            console.log("res.data.userLoggedIn = " + res.data.userLoggedIn);
+            console.log(res.data.token);
+            // navigate(`/loggedin/${res.data.userLoggedIn}`)
+            navigate("/loggedin/ByUserID")
         })
         .catch(err => {
             console.log(err.response);

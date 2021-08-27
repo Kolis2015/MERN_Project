@@ -4,7 +4,7 @@ import axios from 'axios'
 const UploadDesign = (props) => {
     const [category, setCategory] = useState("Shoes")
     const [gender, setGender] = useState("")
-    const[season,setSeason] = useState("")
+    const [season,setSeason] = useState("")
     const [dressCode, setDressCode] = useState("")
     const [designerName, setDesignerName] = useState(localStorage.getItem("userLoggedIn"));
     const [description, setDescription] = useState("")
